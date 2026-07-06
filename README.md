@@ -30,16 +30,22 @@ A stack do projeto foi projetada para ter **zero dependências externas complexa
 
 ## 📂 Estrutura do Projeto
 
-O código é separado por responsabilidades seguindo o padrão MVC:
+O código é separado por responsabilidades seguindo o padrão MVC no backend e a separação de interesses (HTML, CSS, JS) no frontend estático:
 
 ```
-shoppe_car2026/
+shoppe_cart-2026/
 ├── src/
 │   ├── controllers/      # Controladores que gerenciam requisições e respostas da API
 │   ├── middlewares/      # Validadores de dados e tratamento centralizado de erros
 │   ├── routes/           # Rotas da API (/api/cart)
 │   ├── services/         # Entidades de negócio (Cart, Item) contendo a lógica central
-│   ├── server.js         # Ponto de entrada do servidor backend Express
+│   ├── public/           # Dashboard visual do desenvolvedor e playground
+│   │   ├── css/
+│   │   │   └── style.css # Estilos, design (glow, layouts e tabela)
+│   │   ├── js/
+│   │   │   └── app.js    # Inteligência do cliente (fetch, DOM e logs de console)
+│   │   └── index.html    # Marcação estrutural limpa e sem scripts/estilos inline
+│   ├── server.js         # Ponto de entrada do servidor Express
 │   └── cli.js            # Ponto de entrada do cliente CLI interativo
 ├── tests/                # Testes automatizados do negócio
 ├── package.json          # Metadados do projeto e scripts npm
@@ -127,6 +133,7 @@ A API responde no endereço `http://localhost:3001/api/cart`.
 3. **CLI Inteligente (Dual-Mode)**: O terminal tenta se conectar à API backend, mas chaveia de forma transparente para rodar a lógica local na memória caso detecte que o servidor está offline, exibindo um status visual amigável (`🟢 CONECTADO` vs `🟡 MODO LOCAL`).
 4. **Tratamento de Exceções**: Retornos padronizados no padrão JSON para erros 400 (Bad Request) e 404 (Not Found).
 5. **Modernização para ESM**: Migração completa para ES Modules sem uso de bundlers adicionais.
+6. **Modularização de Frontend (HTML, CSS, JS)**: Refatoração do dashboard visual para separar a estrutura HTML dos estilos CSS externos e comportamentos dinâmicos Javascript, seguindo as boas práticas de cacheabilidade, reuso de código e legibilidade.
 
 ### 🔮 Melhorias sugeridas para o futuro
 

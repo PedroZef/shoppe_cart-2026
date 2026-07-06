@@ -1,143 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shoppe Car 2026 - Developer Hub</title>
-  
-  <!-- Preconnect & Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shoppe Car 2026 - Developer Hub</title>
 
-  <header>
-    <div class="logo-container">
-      <span class="logo-icon">🚗</span>
-      <div>
-        <h1>Shoppe Car 2026</h1>
-        <div class="subtitle">API Developer Dashboard & Live Playground</div>
-      </div>
-    </div>
-    <div class="server-status">
-      <span class="status-dot"></span>
-      Backend API Online (Port 3001)
-    </div>
-  </header>
+        <!-- Preconnect & Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
-  <main>
-    <!-- Left Column: Controls -->
-    <section class="form-container">
-      <div class="card" style="margin-bottom: 2rem;">
-        <div class="card-title">➕ Adicionar Produto</div>
-        <form id="add-form">
-          <div class="form-group">
-            <label for="prod-name">Nome do Produto</label>
-            <input type="text" id="prod-name" placeholder="Ex: Cerveja, Notebook" required>
-          </div>
-          <div class="form-group">
-            <label for="prod-price">Preço Unitário (R$)</label>
-            <input type="number" id="prod-price" step="0.01" min="0.01" placeholder="Ex: 49.90" required>
-          </div>
-          <div class="form-group">
-            <label for="prod-qty">Quantidade Inicial</label>
-            <input type="number" id="prod-qty" min="1" step="1" value="1" required>
-          </div>
-          <button type="submit">Adicionar ao Carrinho</button>
-        </form>
-        
-        <button class="btn-clear" id="btn-clear-cart">🧹 Limpar Carrinho Completo</button>
-      </div>
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo-container">
+                <span class="logo-icon">🚗</span>
+                <div>
+                    <h1>Shoppe Car 2026</h1>
+                    <div class="subtitle">API Developer Dashboard & Live Playground</div>
+                </div>
+            </div>
+            <div class="server-status">
+                <span class="status-dot"></span>
+                Backend API Online (Port 3001)
+            </div>
+        </header>
 
-      <div class="card">
-        <div class="card-title">🔌 Rotas da API REST</div>
-        <div class="endpoints-list">
-          <div class="endpoint-item">
-            <span class="badge get">GET</span>
-            <span class="endpoint-path">/api/cart</span>
-          </div>
-          <div class="endpoint-item">
-            <span class="badge post">POST</span>
-            <span class="endpoint-path">/api/cart/items</span>
-          </div>
-          <div class="endpoint-item">
-            <span class="badge patch">PATCH</span>
-            <span class="endpoint-path">/api/cart/items/:name</span>
-          </div>
-          <div class="endpoint-item">
-            <span class="badge delete">DELETE</span>
-            <span class="endpoint-path">/api/cart/items/:name</span>
-          </div>
-          <div class="endpoint-item">
-            <span class="badge delete">DELETE</span>
-            <span class="endpoint-path">/api/cart</span>
-          </div>
+        <main>
+            <!-- Left Column: Controls -->
+            <section class="form-container">
+                <div class="card" style="margin-bottom: 2rem">
+                    <div class="card-title">➕ Adicionar Produto</div>
+                    <form id="add-form">
+                        <div class="form-group">
+                            <label for="prod-name">Nome do Produto</label>
+                            <input
+                                type="text"
+                                id="prod-name"
+                                placeholder="Ex: Cerveja, Notebook"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-price">Preço Unitário (R$)</label>
+                            <input
+                                type="number"
+                                id="prod-price"
+                                step="0.01"
+                                min="0.01"
+                                placeholder="Ex: 49.90"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-qty">Quantidade Inicial</label>
+                            <input
+                                type="number"
+                                id="prod-qty"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                            />
+                        </div>
+                        <button type="submit">Adicionar ao Carrinho</button>
+                    </form>
+
+                    <button class="btn-clear" id="btn-clear-cart">
+                        🧹 Limpar Carrinho Completo
+                    </button>
+                </div>
+
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-title">⚡ Cliente API Customizado</div>
+                    <form id="custom-request-form">
+                        <div class="form-group">
+                            <label for="custom-method">Método HTTP</label>
+                            <select id="custom-method" style="background: rgba(31, 41, 55, 0.5); border: 1px solid var(--card-border); border-radius: 8px; color: var(--text-main); padding: 0.75rem 1rem; width: 100%; font-family: var(--font-body);">
+                                <option value="GET">GET</option>
+                                <option value="POST" selected>POST</option>
+                                <option value="PATCH">PATCH</option>
+                                <option value="DELETE">DELETE</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom-path">Caminho da Rota</label>
+                            <input type="text" id="custom-path" value="/api/cart/items" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom-body">Corpo da Requisição (JSON)</label>
+                            <textarea id="custom-body" rows="4" style="width: 100%; background: rgba(31, 41, 55, 0.5); border: 1px solid var(--card-border); border-radius: 8px; color: var(--text-main); font-family: monospace; font-size: 0.85rem; padding: 0.75rem 1rem; resize: vertical;" placeholder='{
+  "name": "Teclado",
+  "price": 89.90,
+  "quantity": 1
+}'></textarea>
+                        </div>
+                        <button type="submit" style="background: var(--secondary-gradient);">Enviar Requisição</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🔌 Rotas da API REST</div>
+                    <div class="endpoints-list">
+                        <div class="endpoint-item">
+                            <span class="badge get">GET</span>
+                            <span class="endpoint-path">/api/cart</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="badge post">POST</span>
+                            <span class="endpoint-path">/api/cart/items</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="badge patch">PATCH</span>
+                            <span class="endpoint-path">/api/cart/items/:name</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="badge delete">DELETE</span>
+                            <span class="endpoint-path">/api/cart/items/:name</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="badge delete">DELETE</span>
+                            <span class="endpoint-path">/api/cart</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Visual Cart and Console Logs -->
+            <section class="dashboard-grid">
+                <div class="card cart-wrapper">
+                    <div class="card-title">🛒 Visualização do Carrinho</div>
+
+                    <div class="cart-table-container">
+                        <table id="cart-table">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Preço Unit.</th>
+                                    <th>Qtd</th>
+                                    <th>Subtotal</th>
+                                    <th style="width: 50px">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-tbody">
+                                <!-- Dynamically populated -->
+                            </tbody>
+                        </table>
+
+                        <div id="cart-empty" class="empty-state">
+                            <div class="empty-icon">🛍️</div>
+                            Seu carrinho está vazio no momento.<br />Adicione produtos usando o
+                            painel lateral!
+                        </div>
+                    </div>
+
+                    <div class="summary-bar">
+                        <div class="summary-item">
+                            <span class="summary-label">Total de Itens</span>
+                            <span class="summary-value count" id="sum-count">0</span>
+                        </div>
+                        <div class="summary-item" style="text-align: right">
+                            <span class="summary-label">Valor Geral</span>
+                            <span class="summary-value" id="sum-total">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Realtime API Logs -->
+                <div class="card console-wrapper">
+                    <div class="console-header">
+                        <div class="console-title">🖥️ Console de Logs da API (Tempo Real)</div>
+                        <button class="console-clear" id="btn-clear-logs">Limpar Logs</button>
+                    </div>
+                    <pre><code id="console-logs">Esperando por requisições...</code></pre>
+                </div>
+            </section>
+        </main>
+
+        <div class="toast" id="toast">
+            <span id="toast-icon">✔</span>
+            <span id="toast-text">Ação executada com sucesso!</span>
         </div>
-      </div>
-    </section>
 
-    <!-- Right Column: Visual Cart and Console Logs -->
-    <section class="dashboard-grid">
-      <div class="card cart-wrapper">
-        <div class="card-title">🛒 Visualização do Carrinho</div>
-        
-        <div class="cart-table-container">
-          <table id="cart-table">
-            <thead>
-              <tr>
-                <th>Produto</th>
-                <th>Preço Unit.</th>
-                <th>Qtd</th>
-                <th>Subtotal</th>
-                <th style="width: 50px;">Ações</th>
-              </tr>
-            </thead>
-            <tbody id="cart-tbody">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
-          
-          <div id="cart-empty" class="empty-state">
-            <div class="empty-icon">🛍️</div>
-            Seu carrinho está vazio no momento.<br>Adicione produtos usando o painel lateral!
-          </div>
-        </div>
+        <footer class="footer">
+            @Copy 2026 - Pedro Zeferino da Silva.
+        </footer>
 
-        <div class="summary-bar">
-          <div class="summary-item">
-            <span class="summary-label">Total de Itens</span>
-            <span class="summary-value count" id="sum-count">0</span>
-          </div>
-          <div class="summary-item" style="text-align: right;">
-            <span class="summary-label">Valor Geral</span>
-            <span class="summary-value" id="sum-total">R$ 0,00</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Realtime API Logs -->
-      <div class="card console-wrapper">
-        <div class="console-header">
-          <div class="console-title">🖥️ Console de Logs da API (Tempo Real)</div>
-          <button class="console-clear" id="btn-clear-logs">Limpar Logs</button>
-        </div>
-        <pre><code id="console-logs">Esperando por requisições...</code></pre>
-      </div>
-    </section>
-  </main>
-
-  <footer style="text-align: center; margin-top: 3rem; padding: 2rem 0; color: var(--text-muted); font-size: 0.9rem; font-family: var(--font-body); border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;">
-    @Copy 2026  - Pedro Zeferino da Silva.
-  </footer>
-
-  <div class="toast" id="toast">
-    <span id="toast-icon">✔</span>
-    <span id="toast-text">Ação executada com sucesso!</span>
-  </div>
-
-  <script src="/js/app.js" defer></script>
-</body>
+        <script src="/js/app.js" defer></script>
+    </body>
 </html>

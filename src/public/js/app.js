@@ -5,6 +5,7 @@ const cartTable = document.getElementById('cart-table');
 const sumCount = document.getElementById('sum-count');
 const sumTotal = document.getElementById('sum-total');
 const addForm = document.getElementById('add-form');
+const customForm = document.getElementById('custom-request-form');
 const consoleLogs = document.getElementById('console-logs');
 const btnClearCart = document.getElementById('btn-clear-cart');
 const btnClearLogs = document.getElementById('btn-clear-logs');
@@ -120,6 +121,49 @@ addForm.addEventListener('submit', async (e) => {
     console.error(err);
   }
 });
+
+// Custom API Client Request Action
+if (customForm) {
+  customForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const method = document.getElementById('custom-method').value;
+    const path = document.getElementById('custom-path').value.trim();
+    const bodyText = document.getElementById('custom-body').value.trim();
+
+    let body = null;
+    if (bodyText && ['POST', 'PATCH', 'PUT'].includes(method)) {
+      try {
+        body = JSON.parse(bodyText);
+      } catch (err) {
+        showToast('JSON inválido no corpo da requisição.', true);
+        return;
+      }
+    }
+
+    try {
+      const options = { method };
+      if (body) {
+        options.headers = { 'Content-Type': 'application/json' };
+        options.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(path, options);
+      const result = await response.json();
+
+      logAction(method, path, response.status, result);
+
+      if (response.ok) {
+        showToast(result.message || 'Requisição executada com sucesso!');
+        loadCart();
+      } else {
+        showToast(result.message || 'A API retornou um erro.', true);
+      }
+    } catch (err) {
+      showToast('Erro ao enviar requisição para o servidor.', true);
+      console.error(err);
+    }
+  });
+}
 
 // Update Quantity Action
 const changeQuantity = async (name, newQty) => {

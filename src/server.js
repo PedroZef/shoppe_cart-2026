@@ -14,7 +14,9 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 
 // Serve static files (HTML, CSS, JS dashboard)
-app.use(express.static(path.join(__dirname, 'public')));
+const staticPath = path.join(__dirname, 'public');
+console.log(`[Backend] Serving static files from: ${staticPath}`);
+app.use(express.static(staticPath));
 
 // API Request Logger Middleware
 app.use((req, res, next) => {

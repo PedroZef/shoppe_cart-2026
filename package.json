@@ -1,0 +1,17 @@
+{
+  "name": "shoppe-car-2026",
+  "version": "1.0.0",
+  "description": "Shopping Cart backend simulation with interactive CLI and modern JS patterns",
+  "license": "ISC",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "cli": "node src/cli.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
